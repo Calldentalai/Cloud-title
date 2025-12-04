@@ -1,8 +1,8 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Upload, X, FileText } from 'lucide-react';
+import { Upload, X, FileText, Loader2 } from 'lucide-react';
 import { FileData } from '@/lib/types';
 
 interface MultiFileDropzoneProps {
@@ -18,26 +18,46 @@ export default function MultiFileDropzone({
   currentFiles,
   onRemove,
 }: MultiFileDropzoneProps) {
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
+      setIsUploading(true);
+      setUploadError(null);
       const newFiles: FileData[] = [];
 
-      for (const file of acceptedFiles) {
-        const base64 = await new Promise<string>((resolve) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(reader.result as string);
-          reader.readAsDataURL(file);
-        });
+      try {
+        for (const file of acceptedFiles) {
+          const formData = new FormData();
+          formData.append('file', file);
 
-        newFiles.push({
-          filename: file.name,
-          base64,
-          type: file.type,
-          size: file.size,
-        });
+          const response = await fetch('/api/upload', {
+            method: 'POST',
+            body: formData,
+          });
+
+          if (!response.ok) {
+            throw new Error(`Failed to upload ${file.name}`);
+          }
+
+          const data = await response.json();
+
+          newFiles.push({
+            filename: data.filename,
+            url: data.url,
+            type: data.type,
+            size: data.size,
+          });
+        }
+
+        onFilesSelect([...currentFiles, ...newFiles]);
+      } catch (error) {
+        console.error('Upload error:', error);
+        setUploadError('Failed to upload one or more files. Please try again.');
+      } finally {
+        setIsUploading(false);
       }
-
-      onFilesSelect([...currentFiles, ...newFiles]);
     },
     [currentFiles, onFilesSelect]
   );
@@ -52,6 +72,7 @@ export default function MultiFileDropzone({
     onDrop,
     accept: acceptObj,
     multiple: true,
+    disabled: isUploading,
   });
 
   const formatFileSize = (bytes: number) => {
@@ -65,23 +86,39 @@ export default function MultiFileDropzone({
       <div
         {...getRootProps()}
         className={`w-full p-8 border-2 border-dashed rounded-lg cursor-pointer transition-colors ${
-          isDragActive
+          isUploading
+            ? 'border-blue-300 bg-blue-50 cursor-wait'
+            : isDragActive
             ? 'border-blue-500 bg-blue-50'
             : 'border-gray-300 hover:border-blue-400 hover:bg-gray-50'
         }`}
       >
         <input {...getInputProps()} />
         <div className="flex flex-col items-center gap-3 text-center">
-          <Upload className="text-gray-400" size={28} />
-          {isDragActive ? (
-            <p className="text-blue-600">Drop files here...</p>
+          {isUploading ? (
+            <>
+              <Loader2 className="text-blue-500 animate-spin" size={28} />
+              <p className="text-blue-600">Uploading files...</p>
+            </>
+          ) : isDragActive ? (
+            <>
+              <Upload className="text-blue-500" size={28} />
+              <p className="text-blue-600">Drop files here...</p>
+            </>
           ) : (
-            <p className="text-gray-600">
-              Drag & drop files here, or <span className="text-blue-600 font-medium">browse</span>
-            </p>
+            <>
+              <Upload className="text-gray-400" size={28} />
+              <p className="text-gray-600">
+                Drag & drop files here, or <span className="text-blue-600 font-medium">browse</span>
+              </p>
+            </>
           )}
         </div>
       </div>
+
+      {uploadError && (
+        <p className="text-sm text-red-500 text-center">{uploadError}</p>
+      )}
 
       {currentFiles.length > 0 && (
         <div className="space-y-2">

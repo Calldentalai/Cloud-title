@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Title Onboarding - Prerequisites Checklist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2563eb;
+        }
+
+        .header h1 {
+            color: #1e40af;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        .intro {
+            background: #f0f9ff;
+            border-left: 4px solid #2563eb;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .intro p {
+            color: #1e40af;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            color: #1e40af;
+            font-size: 20px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-number {
+            background: #2563eb;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            background: #f8fafc;
+            border-radius: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .checklist li:hover {
+            background: #f1f5f9;
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #cbd5e1;
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .item-content {
+            flex: 1;
+        }
+
+        .item-title {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .item-description {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .required {
+            color: #dc2626;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .optional {
+            color: #059669;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .tip-box {
+            background: #fefce8;
+            border: 1px solid #fde047;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .tip-box strong {
+            color: #a16207;
+        }
+
+        .tip-box p {
+            color: #854d0e;
+            font-size: 14px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .footer p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .contact-info p {
+            color: #1e40af;
+            font-weight: 500;
+        }
+
+        @media print {
+            body {
+                padding: 20px;
+            }
+
+            .checklist li {
+                break-inside: avoid;
+            }
+
+            .section {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Cloud Title Onboarding</h1>
+        <p>Prerequisites Checklist</p>
+    </div>
+
+    <div class="intro">
+        <p><strong>Please gather the following information before starting the onboarding form.</strong> Having everything ready will help you complete the process in about 10-15 minutes.</p>
+    </div>
+
+    <div class="section">
+        <h2><span class="section-number">1</span> Company Information</h2>
+        <ul class="checklist">
+            <li>
+                <div class="checkbox"></div>
+                <div class="item-content">
+                    <div class="item-title">Company Name <span class="required">REQUIRED</span></div>
+                    <div class="item-description">Your official business name as it should appear in the system</div>
+                </div>
+            </li>
+            <li>
+                <div class="checkbox"></div>
+                <div class="item-content">
+                    <div class="item-title">Contact Person Name <span class="required">REQUIRED</span></div>
+                    <div class="item-description">Primary point of contact for this onboarding</div>
+                </div>
+            </li>
+            <li>
+                <div class="checkbox"></div>
+                <div class="item-content">
+                    <div class="item-title">Email Address <span class="required">REQUIRED</span></div>
+                    <div class="item-description">Business email for communications and notifications</div>
+                </div>
+            </li>
+            <li>
+                <div class="checkbox"></div>
+                <div class="item-content">
+                    <div class="item-title">Phone Number <span class="required">REQUIRED</span></div>
+                    <div class="item-description">Best contact number including area code</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2><span class="section-number">2</span> System Access Credentials</h2>
+        <ul class="checklist">
+            <li>
+                <div class="checkbox"></div>
+                <div class="item-content">
+                    <div class="item-title">Title Capture Login <span class="required">REQUIRED</span></div>
+                    <div class="item-description">Username and password for your Title Capture account</div>
+                </div>
+            </li>
+            <li>
+                <div class="checkbox"></div>
+                <div class="item-content">
+                    <div class="item-title">GoHighLevel (GHL) Login <span class="required">REQUIRED</span></div>
+                    <div class="item-description">Username and password for your GHL account</div>
+                </div>
+            </li>
+            <li>
+                <div class="checkbox"></div>
+                <div class="item-content">
+                    <div class="item-title">WordPress Admin Login <span class="required">REQUIRED</span></div>
+                    <div class="item-description">Admin username and password for your WordPress site</div>
+                </div>
+            </li>
+        </ul>
+        <div class="tip-box">
+            <strong>Security Tip:</strong>
+            <p>Have your login credentials ready but do not share them via email. You'll enter them securely in the onboarding form.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><span class="section-number">3</span> Technical Requirements</h2>
+        <ul class="checklist">
+            <li>
+                <div class="checkbox"></div>
+                <div class="item-content">
+                    <div class="item-title">OpenAI API Key <span class="optional">OPTIONAL</span></div>
+                    <div class="item-description">If you have an OpenAI account, have your API key ready. If not, we can help you set one up.</div>
+                </div>
+            </li>
+            <li>
+                <div class="checkbox"></div>
+                <div class="item-content">
+                    <div class="item-title">WordPress Website URL <span class="required">REQUIRED</span></div>
+                    <div class="item-description">The full URL of your WordPress website (e.g., https://yourcompany.com)</div>
+                </div>
+            </li>
+        </ul>
+        <div class="tip-box">
+            <strong>Don't have an OpenAI API Key?</strong>
+            <p>No problem! Simply select "I need help setting this up" in the form and we'll assist you with creating one.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><span class="section-number">4</span> Branding Assets</h2>
+        <ul class="checklist">
+            <li>
+                <div class="checkbox"></div>
+                <div class="item-content">
+                    <div class="item-title">Company Logo <span class="required">REQUIRED</span></div>
+                    <div class="item-description">High-resolution logo file (PNG, JPG, or SVG format recommended). Minimum 500x500 pixels.</div>
+                </div>
+            </li>
+            <li>
+                <div class="checkbox"></div>
+                <div class="item-content">
+                    <div class="item-title">Primary Brand Color <span class="required">REQUIRED</span></div>
+                    <div class="item-description">Your main brand color (hex code if known, e.g., #2563eb, or describe it)</div>
+                </div>
+            </li>
+            <li>
+                <div class="checkbox"></div>
+                <div class="item-content">
+                    <div class="item-title">Secondary Brand Color <span class="required">REQUIRED</span></div>
+                    <div class="item-description">Your secondary/accent color (hex code if known, or describe it)</div>
+                </div>
+            </li>
+        </ul>
+        <div class="tip-box">
+            <strong>Finding Your Brand Colors:</strong>
+            <p>Check your website, business cards, or marketing materials. If you have a brand guidelines document, the hex codes will be listed there.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2><span class="section-number">5</span> Documents</h2>
+        <ul class="checklist">
+            <li>
+                <div class="checkbox"></div>
+                <div class="item-content">
+                    <div class="item-title">Sample Title Document (PDF) <span class="required">REQUIRED</span></div>
+                    <div class="item-description">A sample PDF of a typical title document you work with. This helps us configure the system correctly.</div>
+                </div>
+            </li>
+            <li>
+                <div class="checkbox"></div>
+                <div class="item-content">
+                    <div class="item-title">Additional Documents <span class="optional">OPTIONAL</span></div>
+                    <div class="item-description">Any other relevant documents, templates, or files you'd like to share</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2><span class="section-number">6</span> Scheduling</h2>
+        <ul class="checklist">
+            <li>
+                <div class="checkbox"></div>
+                <div class="item-content">
+                    <div class="item-title">Calendly Link <span class="optional">OPTIONAL</span></div>
+                    <div class="item-description">If you use Calendly for scheduling, have your booking link ready</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2><span class="section-number">7</span> Additional Notes</h2>
+        <ul class="checklist">
+            <li>
+                <div class="checkbox"></div>
+                <div class="item-content">
+                    <div class="item-title">Special Requirements or Questions <span class="optional">OPTIONAL</span></div>
+                    <div class="item-description">Think about any specific needs, customizations, or questions you'd like to discuss</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <p>Once you have gathered all the required information, you're ready to complete the onboarding form!</p>
+        <div class="contact-info">
+            <p>Questions? Contact us before starting the form.</p>
+        </div>
+    </div>
+</body>
+</html>

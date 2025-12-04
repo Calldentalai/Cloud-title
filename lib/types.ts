@@ -33,7 +33,7 @@ export interface FormData {
 
 export interface FileData {
   filename: string;
-  base64: string;
+  url: string;
   type: string;
   size: number;
 }
