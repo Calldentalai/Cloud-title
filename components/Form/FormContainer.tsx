@@ -434,7 +434,7 @@ export default function FormContainer() {
                 <ArrowLeft size={20} /> Back
               </Button>
               <Button onClick={goNext} disabled={!canProceed()} className="w-full sm:w-auto">
-                {step.required === false ? 'Skip' : 'Continue'} <ArrowRight size={20} />
+                {step.required === false && !formData[step.field as keyof FormData] ? 'Skip' : 'Continue'} <ArrowRight size={20} />
               </Button>
             </div>
           )}
