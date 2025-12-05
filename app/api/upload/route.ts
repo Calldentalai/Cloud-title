@@ -17,14 +17,35 @@ export async function POST(request: NextRequest) {
     const timestamp = Date.now();
     const filename = `${timestamp}-${file.name}`;
 
-    // Upload to Vercel Blob
-    const blob = await put(filename, file, {
-      access: 'public',
-    });
+    // Check if Vercel Blob is configured
+    if (process.env.BLOB_READ_WRITE_TOKEN) {
+      try {
+        // Upload to Vercel Blob
+        const blob = await put(filename, file, {
+          access: 'public',
+        });
+
+        return NextResponse.json({
+          success: true,
+          url: blob.url,
+          filename: file.name,
+          size: file.size,
+          type: file.type,
+        });
+      } catch (blobError) {
+        console.error('Vercel Blob upload failed, falling back to base64:', blobError);
+        // Fall through to base64 fallback
+      }
+    }
+
+    // Fallback: Convert to base64 data URL (for local dev or if Blob fails)
+    const buffer = await file.arrayBuffer();
+    const base64 = Buffer.from(buffer).toString('base64');
+    const dataUrl = `data:${file.type};base64,${base64}`;
 
     return NextResponse.json({
       success: true,
-      url: blob.url,
+      url: dataUrl,
       filename: file.name,
       size: file.size,
       type: file.type,
@@ -32,7 +53,10 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Upload error:', error);
     return NextResponse.json(
-      { error: 'Failed to upload file' },
+      {
+        error: 'Failed to upload file',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
       { status: 500 }
     );
   }
